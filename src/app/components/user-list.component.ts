@@ -10,11 +10,23 @@ import {selectUsers} from "../state/user.selectors";
   selector: 'app-user-list',
   template: `
     <h4>Users list</h4>
-    <ul>
-      <li *ngFor="let user of users$ | async">
-        {{user.id}}. {{user.name}}
-      </li>
-    </ul>
+    <table>
+      <thead>
+      <tr>
+        <th>id</th>
+        <th>name</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users$ | async">
+          <td>{{user.id}}</td>
+          <td>{{user.name}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.purpose}}</td>
+          <td>{{user.programme}}</td>
+        </tr>
+      </tbody>
+    </table>
   `
 })
 export class UserListComponent implements OnInit {
