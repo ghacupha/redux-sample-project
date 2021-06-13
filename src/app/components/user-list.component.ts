@@ -15,6 +15,9 @@ import {selectUsers} from "../state/user.selectors";
       <tr>
         <th>id</th>
         <th>name</th>
+        <th>email</th>
+        <th>purpose</th>
+        <th>programme</th>
       </tr>
       </thead>
       <tbody>
