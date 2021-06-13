@@ -7,16 +7,19 @@ import {EffectsModule} from "@ngrx/effects";
 import {UserEffects} from "../state/user.effects";
 import {CommonModule} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
+import {UserAddComponent} from "../components/user-add.component";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
-  declarations: [UserListComponent],
+  declarations: [UserListComponent, UserAddComponent],
   imports: [
     CommonModule,
     HttpClientModule,
     EffectsModule.forFeature([UserEffects]),
-    StoreModule.forFeature(usersFeatureSelectorKey, reducer)
+    StoreModule.forFeature(usersFeatureSelectorKey, reducer),
+    ReactiveFormsModule
   ],
-  exports: [UserListComponent],
+  exports: [UserListComponent, UserAddComponent],
   providers: [UsersService]
 })
 export class UsersModule{}

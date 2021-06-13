@@ -5,7 +5,7 @@ import {User} from "./users.model";
 
 @Injectable({providedIn: 'root'})
 export class UsersService {
-  userUrl = 'https://my-json-server.typicode.com/ghacupha/fake-test-data/users';
+  userUrl = 'http://localhost:3000/users';
 
   constructor(private http: HttpClient) {
   }
@@ -13,5 +13,10 @@ export class UsersService {
   getAllUsers(): Observable<User[]> {
 
     return this.http.get<User[]>(this.userUrl);
+  }
+
+  addUser(user: User): Observable<User> {
+
+    return this.http.post<User>(this.userUrl, user);
   }
 }

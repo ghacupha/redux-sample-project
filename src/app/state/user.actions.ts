@@ -6,11 +6,35 @@ export const usersFetched = createAction(
 )
 
 export const usersFetchWorked = createAction(
-  '[Users Page] Users fetched successfully',
+  '[Users API] Users fetched successfully',
   props<{users: User[]}>()
 )
 
 export const usersFetchFailed = createAction(
-  '[Users Page] Users fetch failed',
+  '[Users API] Users fetch failed',
+  props<{error: string}>()
+)
+
+/**
+ * Dispatched when the user adds a new user
+ */
+export const userHasBeenCreated = createAction(
+  '[Users Page] Users created',
+  props<{user: User}>()
+)
+
+/**
+ * Dispatched when the user is added successfully
+ */
+export const userAdditionWorked = createAction(
+  '[Users API] Users added successfully',
+  props<{user: User}>()
+)
+
+/**
+ * Dispatched when the user addition process fails
+ */
+export const userAdditionFailed = createAction(
+  '[Users API] Users add failed',
   props<{error: string}>()
 )
