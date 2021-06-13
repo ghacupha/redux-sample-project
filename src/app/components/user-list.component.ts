@@ -30,6 +30,6 @@ export class UserListComponent implements OnInit {
 
     const users$ = this.state.pipe(select(selectUsers));
 
-    users$.subscribe((users: User[]) => this.users = users.users);
+    users$.subscribe((users: User[]) => this.users = users);
   }
 }

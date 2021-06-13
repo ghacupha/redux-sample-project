@@ -5,7 +5,7 @@ import {User} from "./users.model";
 
 @Injectable({providedIn: 'root'})
 export class UsersService {
-  userUrl = 'https://my-json-server.typicode.com/ghacupha/fake-test-data/db';
+  userUrl = 'https://my-json-server.typicode.com/ghacupha/fake-test-data/users';
 
   constructor(private http: HttpClient) {
   }

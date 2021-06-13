@@ -4,6 +4,7 @@ import {UsersService} from "../users/user.service";
 import {usersFetched, usersFetchFailed, usersFetchWorked} from "./user.actions";
 import {catchError, map, mergeMap} from "rxjs/operators";
 import {of} from "rxjs";
+import {User} from "../users/users.model";
 
 @Injectable()
 export class UserEffects {
@@ -12,7 +13,7 @@ export class UserEffects {
       ofType(usersFetched),
       mergeMap(
         () => this.usersService.getAllUsers().pipe(
-          map((users) => usersFetchWorked({users})),
+          map((users: User[]) => usersFetchWorked({users})),
           catchError(error => of(usersFetchFailed(error)))
         )
       )
