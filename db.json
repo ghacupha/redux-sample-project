@@ -1,35 +1,37 @@
-[
-  {
-    "id": 1,
-    "name": "Safa",
-    "email": "neerupeeru@mail.ee",
-    "purpose": "thesis",
-    "programme": "Software Engineering",
-    "year": 2016,
-    "language": "Estonian",
-    "comments": "In need of correcting a dangling participle.",
-    "status": "RECEIVED"
-  },
-  {
-    "id": 2,
-    "name": "Safa",
-    "email": "neerupeeru@mail.ee",
-    "purpose": "thesis",
-    "programme": "Software Engineering",
-    "year": 2016,
-    "language": "Estonian",
-    "comments": "In need of correcting a dangling participle.",
-    "status": "RECEIVED"
-  },
-  {
-    "id": 3,
-    "name": "Salman",
-    "email": "neerupeeru@mail.ee",
-    "purpose": "thesis",
-    "programme": "Software Engineering",
-    "year": 2016,
-    "language": "Estonian",
-    "comments": "In need of correcting a dangling participle.",
-    "status": "RECEIVED"
-  }
-]
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Safa",
+      "email": "neerupeeru@mail.ee",
+      "purpose": "thesis",
+      "programme": "Software Engineering",
+      "year": 2016,
+      "language": "Estonian",
+      "comments": "In need of correcting a dangling participle.",
+      "status": "RECEIVED"
+    },
+    {
+      "id": 2,
+      "name": "Safa",
+      "email": "neerupeeru@mail.ee",
+      "purpose": "thesis",
+      "programme": "Software Engineering",
+      "year": 2016,
+      "language": "Estonian",
+      "comments": "In need of correcting a dangling participle.",
+      "status": "RECEIVED"
+    },
+    {
+      "id": 3,
+      "name": "Salman",
+      "email": "neerupeeru@mail.ee",
+      "purpose": "thesis",
+      "programme": "Software Engineering",
+      "year": 2016,
+      "language": "Estonian",
+      "comments": "In need of correcting a dangling participle.",
+      "status": "RECEIVED"
+    }
+  ]
+}

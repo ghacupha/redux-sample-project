@@ -5,14 +5,13 @@ import {select, Store} from "@ngrx/store";
 import {State} from "../state/user.reducer";
 import {usersFetched} from "../state/user.actions";
 import {selectUsers} from "../state/user.selectors";
-import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-user-list',
   template: `
     <h4>Users list</h4>
     <ul>
-      <li *ngFor="let user of users">
+      <li *ngFor="let user of users$ | async">
         {{user.id}}. {{user.name}}
       </li>
     </ul>
@@ -20,7 +19,7 @@ import {map} from "rxjs/operators";
 })
 export class UserListComponent implements OnInit {
 
-  users?: User[];
+  users$?: Observable<User[]>;
 
   constructor(private state: Store<State>) {
   }
@@ -28,8 +27,6 @@ export class UserListComponent implements OnInit {
   ngOnInit() {
     this.state.dispatch(usersFetched());
 
-    const users$ = this.state.pipe(select(selectUsers));
-
-    users$.subscribe((users: User[]) => this.users = users);
+    this.users$ = this.state.pipe(select(selectUsers));
   }
 }
