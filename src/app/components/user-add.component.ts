@@ -1,54 +1,18 @@
-import {Component} from "@angular/core";
-import {Store} from "@ngrx/store";
+import {Component, OnInit} from "@angular/core";
+import {select, Store} from "@ngrx/store";
 import {State} from "../state/user.reducer";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {User} from "../users/users.model";
 import {userHasBeenCreated} from "../state/user.actions";
+import {selectUserForUpdate} from "../state/user.selectors";
 
 @Component({
   selector: 'app-add-user',
-  template: `
-    <h4>Add a new User</h4>
-    <form name="editForm" (ngSubmit)="save()" [formGroup]="editForm">
-      <div>
-        <div class="form-group">
-          <label for="id">ID</label>
-          <input type="text" class="form-control" id="id" name="id" formControlName="id"/>
-        </div>
-
-        <div class="form-group">
-          <label class="form-control-label" for="field_Name">Name</label>
-          <input type="text" class="form-control" name="name" id="field_Name"
-                 formControlName="name"/>
-        </div>
-
-        <div class="form-group">
-          <label class="form-control-label" for="field_Email">Email</label>
-          <input type="text" class="form-control" name="email" id="field_Email"
-                 formControlName="email"/>
-        </div>
-
-        <div class="form-group">
-          <label class="form-control-label" for="field_Purpose">Purpose</label>
-          <input type="text" class="form-control" name="purpose" id="field_Purpose"
-                 formControlName="purpose"/>
-        </div>
-
-        <div class="form-group">
-          <label class="form-control-label" for="field_Programme">Programme</label>
-          <input type="text" class="form-control" name="programme" id="field_Programme"
-                 formControlName="programme"/>
-        </div>
-      </div>
-      <div>
-        <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
-          <span>Save</span>
-        </button>
-      </div>
-    </form>
-  `
+  templateUrl: 'user-add.template.html'
 })
-export class UserAddComponent {
+export class UserAddComponent implements OnInit{
+
+  updateUser: User | undefined;
 
   editForm: FormGroup = this.fb.group({
     id: [],
@@ -61,6 +25,13 @@ export class UserAddComponent {
   isSaving: boolean = false;
 
   constructor(private state: Store<State>, private fb: FormBuilder) {
+    this.state.pipe(select(selectUserForUpdate)).subscribe(user => this.updateUser = user)
+  }
+
+  ngOnInit(): void {
+    if (this.updateUser !== undefined) {
+      this.updateForm(this.updateUser);
+    }
   }
 
   save(){

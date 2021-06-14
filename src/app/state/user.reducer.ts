@@ -1,15 +1,23 @@
 import {Action, createReducer, on} from "@ngrx/store";
 import {User} from "../users/users.model";
-import {userAdditionWorked, userDeletionWorked, usersFetchWorked} from "./user.actions";
+import {
+  userAdditionWorked,
+  userDeletionWorked,
+  userHasBeenSelected,
+  usersFetchWorked,
+  userUpdateWorked
+} from "./user.actions";
 
 export const usersFeatureSelectorKey = "users";
 
 export interface State {
   users: User[]
+  selectedUser: User | undefined
 }
 
 export const initialState: State = {
-  users: []
+  users: [],
+  selectedUser: undefined
 }
 
 const _reducer = createReducer(
@@ -28,8 +36,20 @@ const _reducer = createReducer(
   }),
   on(userDeletionWorked, (state, {users}) => {
     return {
-      // forget current state
+      ...state,
       users: [...users]
+    }
+  }),
+  on(userUpdateWorked, (state, {users}) => {
+    return {
+      ...state,
+      users: [...users]
+    }
+  }),
+  on(userHasBeenSelected, (state, {user}) => {
+    return {
+      ...state,
+      selectedUser: user
     }
   })
 )

@@ -9,6 +9,9 @@ import {CommonModule} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
 import {UserAddComponent} from "../components/user-add.component";
 import {ReactiveFormsModule} from "@angular/forms";
+import {Routes} from "@angular/router";
+
+const routes: Routes = []
 
 @NgModule({
   declarations: [UserListComponent, UserAddComponent],

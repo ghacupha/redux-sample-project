@@ -11,7 +11,7 @@ import {
   userHasBeenDeleted,
   userDeletionWorked,
   userDeletionFailed,
-  userListRefreshFailed
+  userListRefreshFailed, userHasBeenUpdated, userUpdateWorked, userUpdateFailed
 } from "./user.actions";
 import {catchError, map, mergeMap} from "rxjs/operators";
 import {of} from "rxjs";
@@ -63,7 +63,15 @@ export class UserEffects {
     )
   )
 
-  // updateUserEffect$ = createEffect();
+  updateUserEffect$ = createEffect(
+    () => this.actions$.pipe(
+      ofType(userHasBeenUpdated),
+      mergeMap(action => this.usersService.updateUser(action.user).pipe(
+        map(users => userUpdateWorked({users})),
+        catchError(error => of(userUpdateFailed({error})))
+      ))
+    )
+  );
 
   constructor(
     private actions$: Actions,

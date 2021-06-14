@@ -74,3 +74,18 @@ export const userHasBeenUpdated = createAction(
   '[User Page] User has been updated',
   props<{user: User}>()
 )
+
+export const userUpdateWorked = createAction(
+  '[User API] User has been updated',
+  props<{users: User[]}>()
+)
+
+export const userUpdateFailed = createAction(
+  '[User API] User has been updated',
+  props<{error: string}>()
+)
+
+export const userHasBeenSelected = createAction(
+  '[User Page] User has been selected',
+  props<{user: User}>()
+)

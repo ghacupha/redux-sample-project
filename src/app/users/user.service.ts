@@ -33,20 +33,25 @@ export class UsersService {
       existingUsers.push(...users)
     });
 
-    if(UsersService.contains(existingUsers, user.id))
+    if (!this.contains(existingUsers, user.id)) {
       return this.http.post<User>(this.userUrl, user);
-    else
-      return EMPTY;
+
+    } else
+      return EMPTY
   }
 
-  private static contains(a: User[], userId: number): boolean {
-    let i: number = a.length;
-    while (i--) {
-      if (a[i].id === userId) {
-        return true;
-      }
+  updateUser(user: User): Observable<User[]> {
+    const existingUsers: User[] = [];
+    this.state.pipe(select(selectUsers)).subscribe(users => {
+      existingUsers.push(...users)
+    });
+
+    if (this.contains(existingUsers, user.id)) {
+      this.http.put<User>(this.userUrl, user)
+      return this.getAllUsers();
     }
-    return false;
+    else
+      return of(existingUsers)
   }
 
   /**
@@ -55,6 +60,16 @@ export class UsersService {
    */
   deleteUser(userId: number): Observable<Object> {
 
-    return this.http.delete(`${this.userUrl}/${userId}` )
+    return this.http.delete(`${this.userUrl}/${userId}`)
+  }
+
+  contains(a: User[], userId: number): boolean {
+    let i: number = a.length;
+    while (i--) {
+      if (a[i].id === userId) {
+        return true;
+      }
+    }
+    return false;
   }
 }
