@@ -17,6 +17,27 @@
       "email": "njeru@mail.com",
       "purpose": "presentation",
       "programme": "Development"
+    },
+    {
+      "id": 5,
+      "name": "Carl",
+      "email": "marx@mail.com",
+      "purpose": "policy",
+      "programme": "Automation Procedures"
+    },
+    {
+      "id": "8",
+      "name": "Martin",
+      "email": "aston@mail.com",
+      "purpose": "Design",
+      "programme": "System Analysis"
+    },
+    {
+      "id": "6",
+      "name": "Johnson",
+      "email": "rod@mail.com",
+      "purpose": "Development",
+      "programme": "System Schematics"
     }
   ]
 }

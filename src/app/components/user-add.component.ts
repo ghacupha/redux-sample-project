@@ -13,7 +13,7 @@ import {userHasBeenCreated} from "../state/user.actions";
       <div>
         <div class="form-group">
           <label for="id">ID</label>
-          <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+          <input type="text" class="form-control" id="id" name="id" formControlName="id"/>
         </div>
 
         <div class="form-group">
