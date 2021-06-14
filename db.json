@@ -1,17 +1,6 @@
 {
   "users": [
     {
-      "id": 1,
-      "name": "Safa",
-      "email": "neerupeeru@mail.ee",
-      "purpose": "thesis",
-      "programme": "Software Engineering",
-      "year": 2016,
-      "language": "Estonian",
-      "comments": "In need of correcting a dangling participle.",
-      "status": "RECEIVED"
-    },
-    {
       "id": 4,
       "name": "Edwin",
       "email": "njeru@mail.com",
@@ -38,6 +27,13 @@
       "email": "rod@mail.com",
       "purpose": "Development",
       "programme": "System Schematics"
+    },
+    {
+      "id": "10",
+      "name": "hex",
+      "email": "nikita@hex.org",
+      "purpose": "Management",
+      "programme": "Supervision"
     }
   ]
 }

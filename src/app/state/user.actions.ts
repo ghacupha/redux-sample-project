@@ -69,3 +69,8 @@ export const userDeletionFailed = createAction(
   '[Users API] User has deletion has failed',
   props<{error: String}>()
 )
+
+export const userHasBeenUpdated = createAction(
+  '[User Page] User has been updated',
+  props<{user: User}>()
+)
