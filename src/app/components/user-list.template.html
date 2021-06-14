@@ -20,8 +20,13 @@
       <td>{{user.purpose}}</td>
       <td>{{user.programme}}</td>
       <td><button (click)="delete(user.id)">Delete</button></td>
-      <td><button (click)="update(user)">Update</button></td>
+      <td><button (click)="update(user)">TODO: Update User</button></td>
     </tr>
     </tbody>
   </table>
+  <div>
+    <span>
+      <a [routerLink]="['view/updates']">TODO: Add User</a>
+    </span>
+  </div>
 </div>

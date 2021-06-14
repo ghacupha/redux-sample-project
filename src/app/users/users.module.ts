@@ -9,9 +9,18 @@ import {CommonModule} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
 import {UserAddComponent} from "../components/user-add.component";
 import {ReactiveFormsModule} from "@angular/forms";
-import {Routes} from "@angular/router";
+import {RouterModule, Routes} from "@angular/router";
 
-const routes: Routes = []
+const routes: Routes = [
+  {
+    path: 'users',
+    component: UserListComponent
+  },
+  {
+    path: 'updates',
+    component: UserAddComponent
+  }
+]
 
 @NgModule({
   declarations: [UserListComponent, UserAddComponent],
@@ -20,7 +29,8 @@ const routes: Routes = []
     HttpClientModule,
     EffectsModule.forFeature([UserEffects]),
     StoreModule.forFeature(usersFeatureSelectorKey, reducer),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forRoot(routes)
   ],
   exports: [UserListComponent, UserAddComponent],
   providers: [UsersService]
