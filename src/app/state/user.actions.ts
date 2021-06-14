@@ -38,3 +38,34 @@ export const userAdditionFailed = createAction(
   '[Users API] Users add failed',
   props<{error: string}>()
 )
+
+/**
+ * Dispatched when a user entity is deleted
+ */
+export const userHasBeenDeleted = createAction(
+ '[Users Page] user deleted',
+ props<{userId: number}>()
+);
+
+/**
+ * Dispatched when user is deleted successfully and has list of current
+ * users as metadata
+ */
+export const userDeletionWorked = createAction(
+  '[Users API] User has been deleted successfully',
+  props<{users: User[]}>()
+)
+
+/**
+ * Dispatched after user list is dispatch in the event we delete a user;
+ * and then failure is experienced
+ */
+export const userListRefreshFailed = createAction(
+  '[Users API] Refresh of user list has failed',
+  props<{error: string}>()
+)
+
+export const userDeletionFailed = createAction(
+  '[Users API] User has deletion has failed',
+  props<{error: String}>()
+)

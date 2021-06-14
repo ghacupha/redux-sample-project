@@ -1,6 +1,6 @@
 import {Action, createReducer, on} from "@ngrx/store";
 import {User} from "../users/users.model";
-import {usersFetchWorked} from "./user.actions";
+import {userDeletionWorked, usersFetchWorked} from "./user.actions";
 
 export const usersFeatureSelectorKey = "users";
 
@@ -18,6 +18,12 @@ const _reducer = createReducer(
     return {
       ...state,
       users: [...state.users, ...users]
+    }
+  }),
+  on(userDeletionWorked, (state, {users}) => {
+    return {
+      // forget current state
+      users: [...users]
     }
   })
 )

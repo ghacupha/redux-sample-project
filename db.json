@@ -12,78 +12,7 @@
       "status": "RECEIVED"
     },
     {
-      "id": 2,
-      "name": "Safa",
-      "email": "neerupeeru@mail.ee",
-      "purpose": "thesis",
-      "programme": "Software Engineering",
-      "year": 2016,
-      "language": "Estonian",
-      "comments": "In need of correcting a dangling participle.",
-      "status": "RECEIVED"
-    },
-    {
-      "id": 3,
-      "name": "Salman",
-      "email": "neerupeeru@mail.ee",
-      "purpose": "thesis",
-      "programme": "Software Engineering",
-      "year": 2016,
-      "language": "Estonian",
-      "comments": "In need of correcting a dangling participle.",
-      "status": "RECEIVED"
-    },
-    {
       "id": 4,
-      "name": "Edwin",
-      "email": "njeru@mail.com",
-      "purpose": "presentation",
-      "programme": "Development"
-    },
-    {
-      "id": 5,
-      "name": "Edwin",
-      "email": "njeru@mail.com",
-      "purpose": "presentation",
-      "programme": "Development"
-    },
-    {
-      "id": 6,
-      "name": "Edwin",
-      "email": "njeru@mail.com",
-      "purpose": "presentation",
-      "programme": "Development"
-    },
-    {
-      "id": 7,
-      "name": "Edwin",
-      "email": "njeru@mail.com",
-      "purpose": "presentation",
-      "programme": "Development"
-    },
-    {
-      "id": 8,
-      "name": "Edwin",
-      "email": "njeru@mail.com",
-      "purpose": "presentation",
-      "programme": "Development"
-    },
-    {
-      "id": 9,
-      "name": "Edwin",
-      "email": "njeru@mail.com",
-      "purpose": "presentation",
-      "programme": "Development"
-    },
-    {
-      "id": 10,
-      "name": "Edwin",
-      "email": "njeru@mail.com",
-      "purpose": "presentation",
-      "programme": "Development"
-    },
-    {
-      "id": 11,
       "name": "Edwin",
       "email": "njeru@mail.com",
       "purpose": "presentation",

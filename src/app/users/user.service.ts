@@ -19,4 +19,13 @@ export class UsersService {
 
     return this.http.post<User>(this.userUrl, user);
   }
+
+  /**
+   * Returns observable object which I won't use
+   * @param userId
+   */
+  deleteUser(userId: number): Observable<Object> {
+
+    return this.http.delete(`${this.userUrl}/${userId}` )
+  }
 }

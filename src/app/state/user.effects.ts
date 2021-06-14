@@ -6,11 +6,17 @@ import {
   userAdditionFailed,
   usersFetched,
   usersFetchFailed,
-  usersFetchWorked, userHasBeenCreated
+  usersFetchWorked,
+  userHasBeenCreated,
+  userHasBeenDeleted,
+  userDeletionWorked,
+  userDeletionFailed,
+  userListRefreshFailed
 } from "./user.actions";
 import {catchError, map, mergeMap} from "rxjs/operators";
 import {of} from "rxjs";
 import {User} from "../users/users.model";
+import {createAction} from "@ngrx/store";
 
 @Injectable()
 export class UserEffects {
@@ -37,6 +43,25 @@ export class UserEffects {
       )
     )
   );
+
+  /**
+   * Delete users and then dispatched user-deletion-worked with the array of new
+   * user list to the reducer
+   */
+  deleteUserEffect$ = createEffect(
+    () => this.actions$.pipe(
+      ofType(userHasBeenDeleted),
+      mergeMap(
+        (action) => this.usersService.deleteUser(action.userId).pipe(
+          mergeMap(() => this.usersService.getAllUsers().pipe(
+            map((users: User[]) => userDeletionWorked({users})),
+            catchError(error => of(userListRefreshFailed({error})))
+          )),
+          catchError(error => of(userDeletionFailed({error})))
+        )
+      )
+    )
+  )
 
   constructor(
     private actions$: Actions,
