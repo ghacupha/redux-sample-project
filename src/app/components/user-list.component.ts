@@ -16,11 +16,12 @@ export class UserListComponent implements OnInit {
   users$?: Observable<User[]>;
 
   constructor(private state: Store<State>, private route: Router) {
+    // to avoid duplicating the list
+    this.users$ = undefined;
   }
 
   ngOnInit() {
     this.state.dispatch(usersFetched());
-
     this.users$ = this.state.pipe(select(selectUsers));
   }
 
@@ -30,6 +31,8 @@ export class UserListComponent implements OnInit {
 
   update(user: User): void {
     this.state.dispatch(userHasBeenSelected({user}))
+
+    this.route.navigate(['updates']);
   }
 
   addUser() {

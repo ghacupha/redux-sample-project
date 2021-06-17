@@ -3,7 +3,7 @@ import {select, Store} from "@ngrx/store";
 import {State} from "../state/user.reducer";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {User} from "../users/users.model";
-import {userHasBeenCreated} from "../state/user.actions";
+import {userHasBeenCreated, userHasBeenUpdated, userSelectionWorked} from "../state/user.actions";
 import {selectUserForUpdate} from "../state/user.selectors";
 import {Router} from "@angular/router";
 
@@ -11,7 +11,7 @@ import {Router} from "@angular/router";
   selector: 'app-add-user',
   templateUrl: 'user-add.template.html'
 })
-export class UserAddComponent implements OnInit{
+export class UserAddComponent implements OnInit {
 
   updateUser?: User;
 
@@ -24,18 +24,31 @@ export class UserAddComponent implements OnInit{
   });
 
   isSaving: boolean = false;
+  isUpdating: boolean = false;
 
   constructor(private state: Store<State>, private fb: FormBuilder, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.state.pipe(select(selectUserForUpdate)).subscribe(user => this.updateForm(user))
+    this.state.pipe(select(selectUserForUpdate)).subscribe(user => this.updateUser = user);
+
+    if (this.updateUser !== undefined) {
+      this.updateForm(this.updateUser);
+      this.isUpdating = true;
+    }
+    this.state.dispatch(userSelectionWorked())
   }
 
-  save(){
+  save() {
     this.isSaving = true;
     const user = this.createFromForm();
-    this.state.dispatch(userHasBeenCreated({user}))
+
+    if (this.isUpdating){
+      this.state.dispatch(userHasBeenUpdated({user}))
+      this.isUpdating = false
+    } else {
+      this.state.dispatch(userHasBeenCreated({user}))
+    }
     this.isSaving = false;
   }
 
@@ -50,7 +63,7 @@ export class UserAddComponent implements OnInit{
     };
   }
 
-  private updateForm(user?: User): void {
+  private updateForm(user?: User | undefined): void {
     this.editForm.patchValue({
       id: user?.id,
       name: user?.name,

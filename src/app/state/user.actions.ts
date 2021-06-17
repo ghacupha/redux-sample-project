@@ -89,3 +89,7 @@ export const userHasBeenSelected = createAction(
   '[User Page] User has been selected',
   props<{user: User}>()
 )
+
+export const userSelectionWorked = createAction(
+  '[User Page] User selection worked',
+)

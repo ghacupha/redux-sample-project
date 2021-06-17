@@ -4,6 +4,7 @@ import {
   userAdditionWorked,
   userDeletionWorked,
   userHasBeenSelected,
+  userSelectionWorked,
   usersFetchWorked,
   userUpdateWorked
 } from "./user.actions";
@@ -43,15 +44,19 @@ const _reducer = createReducer(
   on(userUpdateWorked, (state, {users}) => {
     return {
       ...state,
-      users: [...users]
+      users: [...users],
     }
   }),
   on(userHasBeenSelected, (state, {user}) => {
     return {
       ...state,
-      selectedUser: user
+      selectedUser: {...user}
     }
-  })
+  }),
+  on(userSelectionWorked, (state) => ({
+    ...state,
+    selectedUser: undefined
+  }))
 )
 
 export function reducer(state: State | undefined, action: Action): State {

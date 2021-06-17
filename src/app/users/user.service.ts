@@ -27,31 +27,28 @@ export class UsersService {
    * @param user
    */
   addUser(user: User): Observable<User> {
-    const existingUsers: User[] = [];
 
-    this.state.pipe(select(selectUsers)).subscribe(users => {
-      existingUsers.push(...users)
-    });
-
-    if (!this.contains(existingUsers, user.id)) {
-      return this.http.post<User>(this.userUrl, user);
-
-    } else
-      return EMPTY
+   return this.http.post<User>(this.userUrl, user);
   }
 
   updateUser(user: User): Observable<User[]> {
-    const existingUsers: User[] = [];
-    this.state.pipe(select(selectUsers)).subscribe(users => {
-      existingUsers.push(...users)
-    });
 
-    if (this.contains(existingUsers, user.id)) {
+    if (!this.contains(this.existingUsers, user.id)) {
       this.http.put<User>(this.userUrl, user)
       return this.getAllUsers();
     }
     else
-      return of(existingUsers)
+      return of(this.existingUsers)
+  }
+
+  get existingUsers() {
+    const existingUsers: User[] = [];
+
+    this.state.pipe(select(selectUsers)).subscribe(users => {
+      existingUsers.push(...users)
+    });
+
+    return existingUsers;
   }
 
   /**
