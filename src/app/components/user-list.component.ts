@@ -5,6 +5,7 @@ import {select, Store} from "@ngrx/store";
 import {State} from "../state/user.reducer";
 import {userHasBeenDeleted, userHasBeenSelected, usersFetched} from "../state/user.actions";
 import {selectUsers} from "../state/user.selectors";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-user-list',
@@ -14,7 +15,7 @@ export class UserListComponent implements OnInit {
 
   users$?: Observable<User[]>;
 
-  constructor(private state: Store<State>) {
+  constructor(private state: Store<State>, private route: Router) {
   }
 
   ngOnInit() {
@@ -29,5 +30,9 @@ export class UserListComponent implements OnInit {
 
   update(user: User): void {
     this.state.dispatch(userHasBeenSelected({user}))
+  }
+
+  addUser() {
+    this.route.navigate(['updates'])
   }
 }

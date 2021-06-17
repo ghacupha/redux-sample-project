@@ -1,10 +1,11 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, Input, OnInit} from "@angular/core";
 import {select, Store} from "@ngrx/store";
 import {State} from "../state/user.reducer";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {User} from "../users/users.model";
 import {userHasBeenCreated} from "../state/user.actions";
 import {selectUserForUpdate} from "../state/user.selectors";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-add-user',
@@ -12,26 +13,23 @@ import {selectUserForUpdate} from "../state/user.selectors";
 })
 export class UserAddComponent implements OnInit{
 
-  updateUser: User | undefined;
+  updateUser?: User;
 
   editForm: FormGroup = this.fb.group({
-    id: [],
-    name: [null, []],
-    email: [null, []],
-    purpose: [null, []],
-    programme: [null, []],
+    id: [''],
+    name: [''],
+    email: [''],
+    purpose: [''],
+    programme: [''],
   });
 
   isSaving: boolean = false;
 
-  constructor(private state: Store<State>, private fb: FormBuilder) {
-    this.state.pipe(select(selectUserForUpdate)).subscribe(user => this.updateUser = user)
+  constructor(private state: Store<State>, private fb: FormBuilder, private router: Router) {
   }
 
   ngOnInit(): void {
-    if (this.updateUser !== undefined) {
-      this.updateForm(this.updateUser);
-    }
+    this.state.pipe(select(selectUserForUpdate)).subscribe(user => this.updateForm(user))
   }
 
   save(){
@@ -52,13 +50,17 @@ export class UserAddComponent implements OnInit{
     };
   }
 
-  private updateForm(user: User): void {
+  private updateForm(user?: User): void {
     this.editForm.patchValue({
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      purpose: user.purpose,
-      programme: user.programme,
+      id: user?.id,
+      name: user?.name,
+      email: user?.email,
+      purpose: user?.purpose,
+      programme: user?.programme,
     });
+  }
+
+  gotoUsers() {
+    this.router.navigate(['users'])
   }
 }

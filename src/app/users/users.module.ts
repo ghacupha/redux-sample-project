@@ -8,8 +8,9 @@ import {UserEffects} from "../state/user.effects";
 import {CommonModule} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
 import {UserAddComponent} from "../components/user-add.component";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule, Routes} from "@angular/router";
+
 
 const routes: Routes = [
   {
@@ -30,9 +31,10 @@ const routes: Routes = [
     EffectsModule.forFeature([UserEffects]),
     StoreModule.forFeature(usersFeatureSelectorKey, reducer),
     ReactiveFormsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    FormsModule,
   ],
-  exports: [UserListComponent, UserAddComponent],
+  exports: [UserListComponent, UserAddComponent, RouterModule],
   providers: [UsersService]
 })
 export class UsersModule{}
